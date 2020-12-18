@@ -1,0 +1,41 @@
+body {
+    margin: 0;
+}
+
+header {
+    border: 2px solid black;
+    height: 80px;
+    width: 100%;
+}
+
+.logo {
+    margin: 15px 0px 0px 15px;
+}
+
+.item-select {
+    border: 2px solid black;
+    height: 210px;
+    padding: 50px 10px 10px 10px;
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+.title {
+    font-size: 20px;
+}
+
+.item-pick {
+    border: 2px solid black;
+    height: 120px;
+}
+
+.item-qty {
+    border: 2px solid black;
+    height: 120px;
+}
+
+.add-item {
+    border: 2px solid black;
+    height: 40px;
+}
+

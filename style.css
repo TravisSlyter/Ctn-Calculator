@@ -1,5 +1,6 @@
 body {
     margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 header {
@@ -29,13 +30,73 @@ header {
     height: 120px;
 }
 
+.drop-down {
+    width: 445px;
+    height: 62px;
+    border: 2px solid black;
+}
+
 .item-qty {
     border: 2px solid black;
     height: 120px;
+    padding-left: 25px;
 }
 
-.add-item {
+.qty-box {
+    width: 93px;
+    height: 62px;
+    border: 2px solid black;
+}
+
+.add-btn {
     border: 2px solid black;
     height: 40px;
+    width: 128px;
+    font-weight: bold;
+    font-size: 20px;
+    justify-content: center;
+    align-content: center;
+    display: grid;
+    background-color: #E1E1E1;
+    border-color: #707070;
+}
+
+.contents {
+    width: 581px;
+    height: 344px;
+    border: 2px solid #707070;
+    margin-left: 105px;
+}
+
+.carton-select {
+    border: 2px solid black;
+    padding: 50px 10px 10px 10px;
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+.controls {
+    display: grid;
+    grid-template-columns: 30% auto ;
+}
+
+.submit-btn {
+    width: 153px;
+    height: 40px;
+    border: 2px solid black;
+    font-size: 20px;
+    font-weight: bold;
+    justify-items: center;
+    display: grid;
+}
+
+.clear-btn {
+    width: 153px;
+    height: 40px;
+    border: 2px solid black;
+    font-size: 20px;
+    font-weight: bold;
+    display: grid;
+    justify-items: center;
 }
 

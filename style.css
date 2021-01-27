@@ -1,12 +1,23 @@
+:root {
+    --green: #7FF39A;
+    --gray: #E1E1E1;
+    --border: #707070;
+    --shadow: 0px 5px 6px var(--gray);
+}
+
 body {
     margin: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 header {
-    border: 2px solid black;
-    height: 80px;
     width: 100%;
+    padding-left: 5%;
+    padding: 10px 0px 0px 5%;
+}
+
+main {
+    padding-left: 10%;
 }
 
 .logo {
@@ -14,11 +25,10 @@ header {
 }
 
 .item-select {
-    border: 2px solid black;
-    height: 210px;
-    padding: 50px 10px 10px 10px;
+    height: 190px;
+    padding: 30px 10px 10px 0px;
     display: grid;
-    grid-template-columns: 50% 50%;
+    grid-template-columns: 55% auto;
 }
 
 .title {
@@ -26,30 +36,30 @@ header {
 }
 
 .item-pick {
-    border: 2px solid black;
-    height: 120px;
+    height: 110px;
 }
 
 .drop-down {
     width: 445px;
     height: 62px;
-    border: 2px solid black;
+    border: 2px solid var(--border);
+    box-shadow: var(--shadow);
 }
 
 .item-qty {
-    border: 2px solid black;
-    height: 120px;
+    height: 110px;
     padding-left: 25px;
 }
 
 .qty-box {
     width: 93px;
     height: 62px;
-    border: 2px solid black;
+    border: 2px solid var(--border);
+    box-shadow: var(--shadow);
 }
 
 .add-btn {
-    border: 2px solid black;
+    border: 2px solid var(--border);
     height: 40px;
     width: 128px;
     font-weight: bold;
@@ -57,22 +67,41 @@ header {
     justify-content: center;
     align-content: center;
     display: grid;
-    background-color: #E1E1E1;
-    border-color: #707070;
+    background-color: var(--gray);
+    box-shadow: var(--shadow);
 }
 
 .contents {
     width: 581px;
     height: 344px;
-    border: 2px solid #707070;
-    margin-left: 105px;
+    border: 2px solid var(--border);
+    box-shadow: var(--shadow);
 }
 
 .carton-select {
-    border: 2px solid black;
-    padding: 50px 10px 10px 10px;
+    padding: 40px 10px 30px 0px;
     display: grid;
     grid-template-columns: 50% 50%;
+}
+
+.ctn-drop {
+    width: 367px;
+    height: 62px;
+    border: 2px solid var(--border);
+    box-shadow: var(--shadow);
+}
+
+
+.wgt-box {
+    width: 179px;
+    height: 62px;
+    border: 2px solid var(--border);
+    box-shadow: var(--shadow);
+}
+
+.wgt-select {
+    display: grid;
+    grid-template-columns: 50px 50px;
 }
 
 .controls {
@@ -83,20 +112,26 @@ header {
 .submit-btn {
     width: 153px;
     height: 40px;
-    border: 2px solid black;
+    border: 2px solid var(--border);
     font-size: 20px;
     font-weight: bold;
-    justify-items: center;
+    justify-content: center;
+    align-content: center;
     display: grid;
+    background-color: var(--green);
+    box-shadow: var(--shadow);
 }
 
 .clear-btn {
     width: 153px;
     height: 40px;
-    border: 2px solid black;
+    border: 2px solid var(--border);
     font-size: 20px;
     font-weight: bold;
     display: grid;
-    justify-items: center;
+    justify-content: center;
+    align-content: center;
+    background-color: var(--gray);
+    box-shadow: var(--shadow);
 }
 

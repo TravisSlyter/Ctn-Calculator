@@ -15,22 +15,22 @@
         <div class="item-select">
             <div class="item-pick">
                 <div class="title">ITEM</div>
-                <div class="drop-down"></div>
+                <input list="itemList" id="item-list" class="drop-down" autocomplete="off">
             </div>
             <div class="item-qty">
                 <div class="title">QTY</div>
-                <div class="qty-box"></div>
+                <input class="qty-box"></input>
             </div>
         </div>
         
-        <button class="add-btn">ADD</button>
-        
+        <input type="button" value="Add" id="add-btn" class="btn">
+
         <div class="contents"></div>
 
-        <div class="carton-select">
+        <div id="ctn-pick" class="carton-select">
             <div class="ctn-pick">
                 <div class="title">CARTON SIZE</div>
-                <div class="ctn-drop"></div>
+                <input list="boxList" id="ctn-drop" autocomplete="off"></input>
             </div>
             <div class="ctn-weight">
                 <div class="title">WEIGHT</div>
@@ -39,8 +39,8 @@
         </div>            
             
         <div class="controls">
-            <button class="submit-btn">SUBMIT</button>
-            <button class="clear-btn">CLEAR</button>
+            <button id="submit-btn" class="btn">SUBMIT</button>
+            <button id="clear-btn" class="btn">CLEAR</button>
         </div>
     </main>
 

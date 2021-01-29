@@ -22,7 +22,7 @@ main {
     padding-left: 10%;
 }
 
-button {
+.btn {
     border: 2px solid var(--border);
     font-weight: bold;
     font-size: 20px;
@@ -49,26 +49,32 @@ button {
 
 .drop-down {
     width: 445px;
-    height: 62px;
+    height: 50px;
     border: 2px solid var(--border);
     box-shadow: var(--shadow);
+    font-size: 28px;
 }
 
 .qty-box {
-    width: 93px;
-    height: 62px;
+    width: 80px;
+    height: 50px;
     border: 2px solid var(--border);
     box-shadow: var(--shadow);
+    font-size: 28px;
 }
 
-.add-btn {
+#add-btn {
     height: 40px;
     width: 128px;
     background-color: var(--gray);
     margin-bottom: 30px;
 }
 
-.add-btn:hover {
+#add-btn:hover {
+    background-color: #a3a1a1;
+}
+
+#add-btn:focus {
     background-color: #a3a1a1;
 }
 
@@ -85,16 +91,17 @@ button {
     grid-template-columns: 402px 179px;
 }
 
-.ctn-drop {
+#ctn-drop {
     width: 367px;
-    height: 62px;
+    height: 50px;
     border: 2px solid var(--border);
     box-shadow: var(--shadow);
+    font-size: 28px;
 }
 
 .wgt-box {
     width: 179px;
-    height: 62px;
+    height: 50px;
     border: 2px solid var(--border);
     box-shadow: var(--shadow);
 }
@@ -105,23 +112,31 @@ button {
     grid-template-columns: 214px 153px;
 }
 
-.submit-btn {
+#submit-btn {
     width: 153px;
     height: 40px;
     background-color: var(--green);
 }
 
-.submit-btn:hover {
+#submit-btn:hover {
     background-color: var(--green2);
 }
 
-.clear-btn {
+#submit-btn:focus {
+    background-color: var(--green2);
+}
+
+#clear-btn {
     width: 153px;
     height: 40px;
     background-color: var(--gray);
 }
 
-.clear-btn:hover {
+#clear-btn:hover {
+    background-color: var(--gray2);
+}
+
+#clear-btn:focus {
     background-color: var(--gray2);
 }
 
@@ -142,7 +157,7 @@ button {
     }
 
 
-    .add-btn {
+    #add-btn {
         margin-left: 60%;
     }
 

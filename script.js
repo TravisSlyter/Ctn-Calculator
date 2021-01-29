@@ -1,7 +1,8 @@
 
 
 ////////// Public Variables //////////////
-
+const itemList = document.getElementById('item-list');
+const ctnSelect = document.getElementById('ctn-drop');
 
 
 //////////// Objects & Arrays //////////////
@@ -56,13 +57,43 @@ let items = {
     hl1885: { sku: '1885', desc: 'Atlas', wgt: '16.9' }
 }
 
+let dimArray = [];
+
+
 
 //////////// Public Functions ///////////////
+
+// create array of objects from our boxes Object
+function createBoxList() {
+    let boxDims = Object.values(boxes);
+
+    for (let i = 0; i < boxDims.length; i++) {
+        let x = Object.values(boxDims[i]);
+        let length = x[0];
+        let width = x[1] ;
+        let height = x[2];
+        dimArray.push(length + 'x' + width + 'x' + height);
+    }
+
+    ///////create html datalist ///////////
+    const boxList = document.createElement('datalist');
+    boxList.id = 'boxList';
+    ctnSelect.appendChild(boxList);
+
+    //iterate dimsArray to create options for datalist
+    for (let i = 0; i < dimArray.length; i++) {
+        const option = document.createElement('option');
+        option.value = dimArray[i];
+        boxList.appendChild(option);
+    }
+}
+
 
 
 
 //////////// Start App ////////////////
-
+itemList.focus();
+createBoxList();
 
 
 ///////////// Testing /////////////////

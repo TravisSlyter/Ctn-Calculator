@@ -52,7 +52,7 @@ main {
     height: 50px;
     border: 2px solid var(--border);
     box-shadow: var(--shadow);
-    font-size: 28px;
+    font-size: 24px;
 }
 
 .qty-box {
@@ -60,7 +60,7 @@ main {
     height: 50px;
     border: 2px solid var(--border);
     box-shadow: var(--shadow);
-    font-size: 28px;
+    font-size: 24px;
 }
 
 #add-btn {
@@ -96,7 +96,7 @@ main {
     height: 50px;
     border: 2px solid var(--border);
     box-shadow: var(--shadow);
-    font-size: 28px;
+    font-size: 24px;
 }
 
 .wgt-box {

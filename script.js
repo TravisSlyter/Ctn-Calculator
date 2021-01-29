@@ -3,6 +3,7 @@
 ////////// Public Variables //////////////
 const itemList = document.getElementById('item-list');
 const ctnSelect = document.getElementById('ctn-drop');
+const itemSelect = document.getElementById('item-list');
 
 
 //////////// Objects & Arrays //////////////
@@ -31,8 +32,8 @@ let boxes = {
 let items = {
     hl1038: { sku: '1038', desc: 'NAV Headlamp', wgt: '3.4' },
     hl1045: { sku: '1045', desc: 'Headlamp - Gray', wgt: '3.4' },
-    hl1090: { sku: '1090', desc: 'Pro Kit', wgt: '89.6' },
-    hl1205b: { sku: '1205B', desc: 'HEX-bx', wgt: '9.3' },
+    hl1090: { sku: '1090', desc: 'HL Pro Kit', wgt: '89.6' },
+    hl1205b: { sku: '1205B', desc: 'HEX (box)', wgt: '9.3' },
     hl1205: { sku: '1205', desc: 'HEX', wgt: '9' },
     hl1236: { sku: '1236', desc: 'Headlamp - Yellow', wgt: '3.4' },
     hl1243: { sku: '1243', desc: 'Headlamp - Black', wgt: '3.4' },
@@ -40,28 +41,53 @@ let items = {
     hl1304: { sku: '1304', desc: 'PUC - Black', wgt: '8' },
     hl1342: { sku: '1342', desc: 'PUC - Yellow', wgt: '8' },
     hl1342b: { sku: '1342B', desc: 'PUC - Yellow - bx', wgt: '8' },
-    hl1403: { sku: '1403', desc: 'Journey #150 - Yellow', wgt: '6.4' },
-    hl1441: { sku: '1441', desc: 'Journey #150 - Black', wgt: '6.4' },
-    hl1564: { sku: '1564', desc: 'Journey #160 - Black', wgt: '6.3' },
-    hl1564b: { sku: '1564B', desc: 'Journey #160 - Black(bx)', wgt: '6.2' },
-    hl1588: { sku: '1588', desc: 'Journey #160 - Yellow', wgt: '6.3' },
-    hl1588b: { sku: '1588B', desc: 'Journey #160 - Yellow(bx)', wgt: '6.2' },
-    hl1595: { sku: '1595', desc: 'Journey #150 - Black', wgt: '6.6' },
-    hl1755: { sku: '1755', desc: 'Journey #300 - Black', wgt: '6.6' },
-    hl1762: { sku: '1762', desc: 'Journey #300 - Yellow', wgt: '6.6' },
-    hl1779: { sku: '1779', desc: 'Journey #300 - Gray', wgt: '6.6' },
-    hl1793: { sku: '1793', desc: 'Journey #600 - Black', wgt: '10.7' },
+    hl1403: { sku: '1403', desc: 'Journey 150 - Yellow', wgt: '6.4' },
+    hl1441: { sku: '1441', desc: 'Journey 150 - Black', wgt: '6.4' },
+    hl1564: { sku: '1564', desc: 'Journey 160 - Black', wgt: '6.3' },
+    hl1564b: { sku: '1564B', desc: 'Journey 160 - Black(box)', wgt: '6.2' },
+    hl1588: { sku: '1588', desc: 'Journey 160 - Yellow', wgt: '6.3' },
+    hl1588b: { sku: '1588B', desc: 'Journey 160 - Yellow(box)', wgt: '6.2' },
+    hl1595: { sku: '1595', desc: 'Journey 150 - Black', wgt: '6.6' },
+    hl1755: { sku: '1755', desc: 'Journey 300 - Black', wgt: '6.6' },
+    hl1762: { sku: '1762', desc: 'Journey 300 - Yellow', wgt: '6.6' },
+    hl1779: { sku: '1779', desc: 'Journey 300 - Gray', wgt: '6.6' },
+    hl1793: { sku: '1793', desc: 'Journey 600 - Black', wgt: '10.7' },
     hl1823: { sku: '1823', desc: 'Mammoth - TT', wgt: '11.7' },
-    hl1847: { sku: '1847', desc: 'Journey #300 - TT', wgt: '6.6' },
+    hl1847: { sku: '1847', desc: 'Journey 300 - TT', wgt: '6.6' },
     hl1854: { sku: '1854', desc: 'True Timber Pro Kit', wgt: '100' },
     hl1885: { sku: '1885', desc: 'Atlas', wgt: '16.9' }
 }
 
 let dimArray = [];
+let itemArray = [];
 
 
 
 //////////// Public Functions ///////////////
+
+// create array of objects from items Object //
+function createItemList() {
+    let itemSpecs = Object.values(items);
+
+    for (let i = 0; i < itemSpecs.length; i++) {
+        let x = Object.values(itemSpecs[i]);
+        let sku = x[0];
+        let desc = x[1];
+        itemArray.push(desc + '  ' + '#' + sku);
+    }
+
+    //// create html datalist ////
+    const itemList = document.createElement('datalist');
+    itemList.id = 'itemList';
+    itemSelect.appendChild(itemList);
+
+    // iterate itemArray to create options for datalist
+    for (let i = 0; i < itemArray.length; i++) {
+        const option = document.createElement('option');
+        option.value = itemArray[i];
+        itemList.appendChild(option);
+    }
+}
 
 // create array of objects from our boxes Object
 function createBoxList() {
@@ -93,6 +119,7 @@ function createBoxList() {
 
 //////////// Start App ////////////////
 itemList.focus();
+createItemList();
 createBoxList();
 
 

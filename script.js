@@ -4,6 +4,9 @@
 const itemList = document.getElementById('item-list');
 const ctnSelect = document.getElementById('ctn-drop');
 const itemSelect = document.getElementById('item-list');
+const addBtn = document.getElementById('add-btn');
+const qty = document.getElementById('qty');
+
 
 
 //////////// Objects & Arrays //////////////
@@ -65,6 +68,10 @@ let itemArray = [];
 
 //////////// Public Functions ///////////////
 
+function loadEventListener() {
+    addBtn.addEventListener('click', addContent)
+}
+
 // create array of objects from items Object //
 function createItemList() {
     let itemSpecs = Object.values(items);
@@ -117,10 +124,17 @@ function createBoxList() {
 
 
 
+
+
 //////////// Start App ////////////////
 itemList.focus();
 createItemList();
 createBoxList();
+loadEventListener();
 
 
 ///////////// Testing /////////////////
+
+function addContent(){
+    alert(itemList.value + qty.value)
+}

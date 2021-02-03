@@ -6,6 +6,8 @@ const ctnSelect = document.getElementById('ctn-drop');
 const itemSelect = document.getElementById('item-list');
 const addBtn = document.getElementById('add-btn');
 const qty = document.getElementById('qty');
+const contentList = document.getElementById('content-list');
+const qtyList = document.getElementById('qty-list')
 
 
 
@@ -121,11 +123,6 @@ function createBoxList() {
     }
 }
 
-
-
-
-
-
 //////////// Start App ////////////////
 itemList.focus();
 createItemList();
@@ -136,5 +133,15 @@ loadEventListener();
 ///////////// Testing /////////////////
 
 function addContent(){
-    alert(itemList.value + qty.value)
+    const listItem = document.createElement('li');
+    listItem.innerHTML = itemSelect.value;
+    contentList.appendChild(listItem);
+
+    const listQty = document.createElement('li');
+    listQty.innerHTML = qty.value;
+    qtyList.appendChild(listQty);
+
+    itemList.value = '';
+    qty.value = 1;
+    itemList.focus();
 }

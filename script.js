@@ -7,7 +7,8 @@ const itemSelect = document.getElementById('item-list');
 const addBtn = document.getElementById('add-btn');
 const qty = document.getElementById('qty');
 const contentList = document.getElementById('content-list');
-const qtyList = document.getElementById('qty-list')
+const qtyList = document.getElementById('qty-list');
+const wgtList = document.getElementById('wgt-list');
 
 
 
@@ -125,6 +126,7 @@ function createBoxList() {
 
 //////////// Start App ////////////////
 itemList.focus();
+qty.value = 1;
 createItemList();
 createBoxList();
 loadEventListener();
@@ -134,7 +136,7 @@ loadEventListener();
 
 function addContent(){
     const listItem = document.createElement('li');
-    listItem.innerHTML = itemSelect.value;
+    let x = listItem.innerHTML = itemSelect.value;
     contentList.appendChild(listItem);
 
     const listQty = document.createElement('li');
@@ -144,4 +146,25 @@ function addContent(){
     itemList.value = '';
     qty.value = 1;
     itemList.focus();
+
+    // get sku from string, get weight
+    let y = (x.slice(x.indexOf('#'))).slice(1);
+    let itemSpecs = Object.values(items);
+
+    for (let i = 0; i < itemSpecs.length; i++) {
+        if (itemSpecs[i].sku === y) {
+            let iwgt = itemSpecs[i].wgt;
+
+            function postWgt(){
+                const listWgt = document.createElement('li');
+                listWgt.innerHTML = iwgt * listQty.innerHTML + ' oz';
+                wgtList.appendChild(listWgt);
+            }
+            postWgt();
+            break;
+        } else {
+            //do nothing / error
+        }
+    }
+
 }

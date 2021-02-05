@@ -196,7 +196,7 @@ function totalWeights() {
             check = true
             break;
         } else if (check === false && i === boxDims.length - 1) {
-            alert('error')
+            alert('Error, check box size.')
             break;
         }
     }

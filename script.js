@@ -157,7 +157,6 @@ function addContent(){
             function postWgt(){
                 const listWgt = document.createElement('li');
                 let twgt = iwgt * listQty.innerHTML;
-                console.log(twgt);
                 listWgt.innerHTML = twgt + ' oz';
                 listWgtsArr.push(twgt);
                 wgtList.appendChild(listWgt);
@@ -169,16 +168,6 @@ function addContent(){
         }
     }
 }
-
-//////////// Start App ////////////////
-itemList.focus();
-qty.value = 1;
-createItemList();
-createBoxList();
-loadEventListener();
-
-
-///////////// Testing /////////////////
 
 // find box weight & add to weights array //
 function getBoxWgt() {
@@ -192,6 +181,7 @@ function getBoxWgt() {
 function totalWeights() {
 
     let boxDims = Object.values(boxes);
+    let check = false;
 
     for (let i = 0; i < boxDims.length; i++) {
         let x = Object.values(boxDims[i]);
@@ -200,12 +190,14 @@ function totalWeights() {
         let height = x[2];
         let wgt = x[3];
         let dims = (length + 'x' + width + 'x' + height);
-        if (ctnSelect.value != dims) {
-            // error
-        } else {
-            //listWgtsArr.push(wgt);
+        if (ctnSelect.value === dims) {
             let sum = listWgtsArr.reduce((a,b) => a + b) + wgt;
-            totalWgt.innerHTML = sum;
+            totalWgt.innerHTML = sum.toFixed(2);
+            check = true
+            break;
+        } else if (check === false && i === boxDims.length - 1) {
+            alert('error')
+            break;
         }
     }
 }
@@ -226,3 +218,13 @@ function clear() {
     ctnSelect.value = '';
     totalWgt.innerHTML = ''
 }
+
+//////////// Start App ////////////////
+itemList.focus();
+qty.value = 1;
+createItemList();
+createBoxList();
+loadEventListener();
+
+
+///////////// Testing /////////////////

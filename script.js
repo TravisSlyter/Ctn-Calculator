@@ -9,29 +9,34 @@ const qty = document.getElementById('qty');
 const contentList = document.getElementById('content-list');
 const qtyList = document.getElementById('qty-list');
 const wgtList = document.getElementById('wgt-list');
+const submitBtn = document.getElementById('submit-btn');
+const totalWgt = document.getElementById('total-wgt');
+const clearBtn = document.getElementById('clear-btn');
+
+
 
 
 
 //////////// Objects & Arrays //////////////
 let boxes = {
-    b6x6x2: { length: '6', width: '6', height: '2', wgt: '3.2' } ,
-    b6x6x3: { length: '6', width: '6', height: '3', wgt: '3' } ,
-    b9x6x2: { length: '9', width: '6', height: '2', wgt: '3.2' } ,
-    b9x6x4: { length: '9', width: '6', height: '4', wgt: '3.9' } ,
-    b10x6x3: { length: '10', width: '6', height: '3', wgt: '3.5' } ,
-    b10x6x5: { length: '10', width: '6', height: '5', wgt: '4.2' } ,
-    b10x6x6: { length: '10', width: '6', height: '6', wgt: '5' } ,
-    b10x9x6: { length: '10', width: '9', height: '6', wgt: '7.1' } ,
-    b11x6x4: { length: '11', width: '6', height: '4', wgt: '4.3' } ,
-    b12x6x4: { length: '12', width: '6', height: '4', wgt: '4.6' } ,
-    b12x6x6: { length: '12', width: '6', height: '6', wgt: '7.5' } ,
-    b12x8x6: { length: '12', width: '8', height: '6', wgt: '6.9' } ,
-    b12x9x6: { length: '12', width: '9', height: '6', wgt: '7.4' } ,
-    b12x10x3: { length: '12', width: '10', height: '3', wgt: '6.8' } ,
-    b12x12x6: { length: '12', width: '12', height: '6', wgt: '13' } ,
-    b14x10x8: { length: '14', width: '10', height: '8', wgt: '10.5' } ,
-    b17x14x5: { length: '17', width: '14', height: '5', wgt: '14' } ,
-    b17x14x9: { length: '17', width: '14', height: '9', wgt: '16' } 
+    b6x6x2: { length: '6', width: '6', height: '2', wgt: 3.2 } ,
+    b6x6x3: { length: '6', width: '6', height: '3', wgt: 3 } ,
+    b9x6x2: { length: '9', width: '6', height: '2', wgt: 3.2 } ,
+    b9x6x4: { length: '9', width: '6', height: '4', wgt: 3.9 } ,
+    b10x6x3: { length: '10', width: '6', height: '3', wgt: 3.5 } ,
+    b10x6x5: { length: '10', width: '6', height: '5', wgt: 4.2 } ,
+    b10x6x6: { length: '10', width: '6', height: '6', wgt: 5 } ,
+    b10x9x6: { length: '10', width: '9', height: '6', wgt: 7.1 } ,
+    b11x6x4: { length: '11', width: '6', height: '4', wgt: 4.3 } ,
+    b12x6x4: { length: '12', width: '6', height: '4', wgt: 4.6 } ,
+    b12x6x6: { length: '12', width: '6', height: '6', wgt: 7.5 } ,
+    b12x8x6: { length: '12', width: '8', height: '6', wgt: 6.9 } ,
+    b12x9x6: { length: '12', width: '9', height: '6', wgt: 7.4 } ,
+    b12x10x3: { length: '12', width: '10', height: '3', wgt: 6.8 } ,
+    b12x12x6: { length: '12', width: '12', height: '6', wgt: 13 } ,
+    b14x10x8: { length: '14', width: '10', height: '8', wgt: 10.5 } ,
+    b17x14x5: { length: '17', width: '14', height: '5', wgt: 14 } ,
+    b17x14x9: { length: '17', width: '14', height: '9', wgt: 16 } 
 }
 
 
@@ -66,13 +71,16 @@ let items = {
 
 let dimArray = [];
 let itemArray = [];
+let listWgtsArr = [];
 
 
 
 //////////// Public Functions ///////////////
 
 function loadEventListener() {
-    addBtn.addEventListener('click', addContent)
+    addBtn.addEventListener('click', addContent);
+    submitBtn.addEventListener('click', getBoxWgt);
+    clearBtn.addEventListener('click', clear);
 }
 
 // create array of objects from items Object //
@@ -124,16 +132,7 @@ function createBoxList() {
     }
 }
 
-//////////// Start App ////////////////
-itemList.focus();
-qty.value = 1;
-createItemList();
-createBoxList();
-loadEventListener();
-
-
-///////////// Testing /////////////////
-
+// add items to content list //
 function addContent(){
     const listItem = document.createElement('li');
     let x = listItem.innerHTML = itemSelect.value;
@@ -157,14 +156,73 @@ function addContent(){
 
             function postWgt(){
                 const listWgt = document.createElement('li');
-                listWgt.innerHTML = iwgt * listQty.innerHTML + ' oz';
+                let twgt = iwgt * listQty.innerHTML;
+                console.log(twgt);
+                listWgt.innerHTML = twgt + ' oz';
+                listWgtsArr.push(twgt);
                 wgtList.appendChild(listWgt);
             }
             postWgt();
             break;
         } else {
-            //do nothing / error
+            //do nothing / error / come back here
         }
     }
+}
 
+//////////// Start App ////////////////
+itemList.focus();
+qty.value = 1;
+createItemList();
+createBoxList();
+loadEventListener();
+
+
+///////////// Testing /////////////////
+
+// find box weight & add to weights array //
+function getBoxWgt() {
+    if (ctnSelect.value === '') {
+        alert('Please choose a box size');
+    } else {
+        totalWeights();
+    }
+}
+
+function totalWeights() {
+
+    let boxDims = Object.values(boxes);
+
+    for (let i = 0; i < boxDims.length; i++) {
+        let x = Object.values(boxDims[i]);
+        let length = x[0];
+        let width = x[1] ;
+        let height = x[2];
+        let wgt = x[3];
+        let dims = (length + 'x' + width + 'x' + height);
+        if (ctnSelect.value != dims) {
+            // error
+        } else {
+            //listWgtsArr.push(wgt);
+            let sum = listWgtsArr.reduce((a,b) => a + b) + wgt;
+            totalWgt.innerHTML = sum;
+        }
+    }
+}
+
+function clear() {
+    listWgtsArr = [];
+    while (contentList.hasChildNodes()) {
+        contentList.removeChild(contentList.firstChild);
+    }
+    while (qtyList.hasChildNodes()) {
+        qtyList.removeChild(qtyList.firstChild);
+    }
+    while (wgtList.hasChildNodes()) {
+        wgtList.removeChild(wgtList.firstChild);
+    }
+    itemList.focus();
+    qty.value = 1;
+    ctnSelect.value = '';
+    totalWgt.innerHTML = ''
 }

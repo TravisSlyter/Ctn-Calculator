@@ -192,7 +192,7 @@ function totalWeights() {
         let dims = (length + 'x' + width + 'x' + height);
         if (ctnSelect.value === dims) {
             let sum = listWgtsArr.reduce((a,b) => a + b) + wgt;
-            totalWgt.innerHTML = sum.toFixed(2);
+            totalWgt.innerHTML = sum.toFixed(1);
             check = true
             break;
         } else if (check === false && i === boxDims.length - 1) {

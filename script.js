@@ -83,7 +83,7 @@ function loadEventListener() {
     clearBtn.addEventListener('click', clear);
 }
 
-// create array of objects from items Object //
+// create dropdown options for items //
 function createItemList() {
     let itemSpecs = Object.values(items);
 
@@ -107,7 +107,7 @@ function createItemList() {
     }
 }
 
-// create array of objects from our boxes Object
+// create dropdown options for boxes //
 function createBoxList() {
     let boxDims = Object.values(boxes);
 
@@ -164,7 +164,7 @@ function addContent(){
             postWgt();
             break;
         } else {
-            //do nothing / error / come back here
+            // error here
         }
     }
 }
@@ -192,9 +192,15 @@ function totalWeights() {
         let dims = (length + 'x' + width + 'x' + height);
         if (ctnSelect.value === dims) {
             let sum = listWgtsArr.reduce((a,b) => a + b) + wgt;
-            totalWgt.innerHTML = sum.toFixed(1);
+                if (sum < 16) {
+            totalWgt.innerHTML = sum.toFixed(1) + ' oz';
             check = true
-            break;
+            break; }
+                    else {
+                        let sum2 = sum / 16;
+                        totalWgt.innerHTML = sum2.toFixed(2) + ' lbs';
+                        break;
+                    }
         } else if (check === false && i === boxDims.length - 1) {
             alert('Error, check box size.')
             break;

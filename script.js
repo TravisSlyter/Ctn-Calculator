@@ -165,6 +165,8 @@ function addContent(){
             break;
         } else {
             // error here
+            alert('error');
+            break;
         }
     }
 }

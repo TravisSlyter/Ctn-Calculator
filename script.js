@@ -19,7 +19,7 @@ const clearBtn = document.getElementById('clear-btn');
 
 //////////// Objects & Arrays //////////////
 let boxes = {
-    b6x6x2: { length: '6', width: '6', height: '2', wgt: 3.2 } ,
+    b6x6x2: { length: '6', width: '6', height: '2', wgt: 2.2 } ,
     b6x6x3: { length: '6', width: '6', height: '3', wgt: 3 } ,
     b9x6x2: { length: '9', width: '6', height: '2', wgt: 3.2 } ,
     b9x6x4: { length: '9', width: '6', height: '4', wgt: 3.9 } ,
@@ -149,12 +149,16 @@ function addContent(){
     // get sku from string, get weight
     let y = (x.slice(x.indexOf('#'))).slice(1);
     let itemSpecs = Object.values(items);
+    let check = false;
 
     for (let i = 0; i < itemSpecs.length; i++) {
         if (itemSpecs[i].sku === y) {
-            let iwgt = itemSpecs[i].wgt;
+            
+            check = true;
 
             function postWgt(){
+                
+                let iwgt = itemSpecs[i].wgt;
                 const listWgt = document.createElement('li');
                 let twgt = iwgt * listQty.innerHTML;
                 listWgt.innerHTML = twgt + ' oz';
@@ -162,14 +166,22 @@ function addContent(){
                 wgtList.appendChild(listWgt);
             }
             postWgt();
-            break;
-        } else {
-            // error here
-            alert('error');
-            break;
+            break; 
+        } else if (check === false && i === itemSpecs.length - 1) {
+            alert('Error with Item #');
+            clear();
         }
     }
 }
+
+function postWgt(){
+    const listWgt = document.createElement('li');
+    let twgt = iwgt * listQty.innerHTML;
+    listWgt.innerHTML = twgt + ' oz';
+    listWgtsArr.push(twgt);
+    wgtList.appendChild(listWgt);
+}
+
 
 // find box weight & add to weights array //
 function getBoxWgt() {
@@ -197,7 +209,8 @@ function totalWeights() {
                 if (sum < 16) {
             totalWgt.innerHTML = sum.toFixed(1) + ' oz';
             check = true
-            break; }
+            break;
+         }
                     else {
                         let sum2 = sum / 16;
                         totalWgt.innerHTML = sum2.toFixed(2) + ' lbs';
